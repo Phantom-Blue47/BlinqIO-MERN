@@ -8,7 +8,16 @@ function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:4000/register', { email, password });
+        const loginData = { email, password };
+        const response = await fetch('http://localhost:4000/user/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginData),
+          });
+        
+        const data = await response.json();
       alert(res.data.message);
     //   {
     //     "username": "user123",
